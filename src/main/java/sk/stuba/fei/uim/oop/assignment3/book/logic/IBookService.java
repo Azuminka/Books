@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop.assignment3.book.logic;
 
 
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
-import sk.stuba.fei.uim.oop.assignment3.book.web.BookAmountResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.BookRequest;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 

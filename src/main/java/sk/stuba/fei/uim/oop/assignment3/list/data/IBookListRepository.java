@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IBookListRepository extends JpaRepository<BookList, Long> {
+    BookList findBookListById(Long id);
 }
