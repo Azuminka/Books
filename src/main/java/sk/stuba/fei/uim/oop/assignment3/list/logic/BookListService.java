@@ -1,4 +1,5 @@
 package sk.stuba.fei.uim.oop.assignment3.list.logic;
 
-public class BookListService {
+public class BookListService implements IBookListService{
+
 }

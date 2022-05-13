@@ -2,6 +2,7 @@ package sk.stuba.fei.uim.oop.assignment3.book.logic;
 
 
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
+import sk.stuba.fei.uim.oop.assignment3.book.web.BookAmountResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.BookRequest;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
@@ -15,4 +16,5 @@ public interface IBookService {
     BookEntity updateBook(Long id, BookRequest bookRequest) throws NotFoundException;
     Integer getBookAmount(Long id);
     Integer incrementAmount(Long id, BookEntity book);
+    Integer getBookLendCount(Long id) throws NotFoundException;
 }

@@ -60,5 +60,9 @@ public class BookController {
         return amount;
     }
 
+    @GetMapping("/{id}/lendCount")
+    public BookAmountResponse getLendCount(@PathVariable Long id) throws NotFoundException {
+        return new BookAmountResponse(bookService.getBookLendCount(id));
+    }
 
 }

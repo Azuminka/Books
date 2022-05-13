@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.author.logic.IAuthorService;
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
 import sk.stuba.fei.uim.oop.assignment3.book.data.IBookRepository;
+import sk.stuba.fei.uim.oop.assignment3.book.web.BookAmountResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.BookRequest;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,6 +95,15 @@ public class BookService implements IBookService{
         oldBook.setAmount(old+book.getAmount());
         this.bookRepository.save(oldBook);
         return oldBook.getAmount();
+    }
+
+    @Override
+    public Integer getBookLendCount(Long id) throws NotFoundException {
+        BookEntity b= bookRepository.findBookEntityById(id);
+        if (b==null){
+            throw new NotFoundException();
+        }
+        return b.getLendCount();
     }
 }
 
