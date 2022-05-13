@@ -28,17 +28,18 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public AuthorResponse getAuthorById(@PathVariable Long id) throws NotFoundException {
-        return new AuthorResponse(authorService.findById(id));
+    public ResponseEntity<AuthorResponse> getAuthorById(@PathVariable Long id) throws NotFoundException{
+        return new ResponseEntity<>(new AuthorResponse(authorService.findById(id)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAuthorById(@PathVariable Long id) throws NotFoundException {
-        this.authorService.deleteById(id);
+    public ResponseEntity<AuthorResponse> deleteAuthorById(@PathVariable Long id) throws NotFoundException {
+        authorService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public AuthorResponse updateAuthor(@PathVariable Long id, @RequestBody AuthorRequest authorRequest) throws NotFoundException{
-        return new AuthorResponse(this.authorService.updateAuthor(id, authorRequest));
+    public ResponseEntity<AuthorResponse> updateAuthor(@PathVariable Long id, @RequestBody AuthorRequest authorRequest) throws NotFoundException{
+        return new ResponseEntity<>(new AuthorResponse(this.authorService.updateAuthor(id, authorRequest)), HttpStatus.OK);
     }
 }

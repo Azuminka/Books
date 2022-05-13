@@ -28,18 +28,19 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public BookResponse getBookById(@PathVariable Long id) throws NotFoundException {
-        return new BookResponse(bookService.findById(id));
+    public ResponseEntity<BookResponse> getBookById(@PathVariable Long id) throws NotFoundException{
+        return new ResponseEntity<>(new BookResponse(bookService.findById(id)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBookById(@PathVariable Long id) throws NotFoundException {
-        this.bookService.deleteById(id);
+    public ResponseEntity<BookResponse> deleteBookById(@PathVariable Long id) throws NotFoundException {
+        bookService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest bookRequest) throws NotFoundException{
-        return new BookResponse(this.bookService.updateBook(id, bookRequest));
+    public ResponseEntity<BookResponse> updateBook(@PathVariable Long id, @RequestBody BookRequest bookRequest) throws NotFoundException{
+        return new ResponseEntity<>(new BookResponse(this.bookService.updateBook(id, bookRequest)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/amount")

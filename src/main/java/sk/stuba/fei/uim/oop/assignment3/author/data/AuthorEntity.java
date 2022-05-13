@@ -1,15 +1,13 @@
 package sk.stuba.fei.uim.oop.assignment3.author.data;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
 
 import javax.persistence.*;
 import java.util.List;
-import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
