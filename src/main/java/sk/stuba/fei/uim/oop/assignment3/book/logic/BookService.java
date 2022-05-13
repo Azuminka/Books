@@ -5,12 +5,9 @@ import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.author.logic.IAuthorService;
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookEntity;
 import sk.stuba.fei.uim.oop.assignment3.book.data.IBookRepository;
-import sk.stuba.fei.uim.oop.assignment3.book.web.BookAmountResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.BookRequest;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
-
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 

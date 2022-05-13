@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sk.stuba.fei.uim.oop.assignment3.exceptions.BadRequestException;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.logic.IBookListService;
 
@@ -35,6 +36,23 @@ public class BookListController {
     @DeleteMapping("/{id}")
     public ResponseEntity<BookListResponse> deleteList(@PathVariable Long id) throws NotFoundException{
         bookListService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/add")
+    public ResponseEntity<BookListResponse> addBooks(@PathVariable Long id, @RequestBody BookListRequest request) throws NotFoundException, BadRequestException {
+        return new ResponseEntity<>(new BookListResponse(bookListService.addBookToList(id, request.getId())), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/remove")
+    public ResponseEntity<BookListResponse> deleteBookFromLandingList(@PathVariable Long id, @RequestBody BookListRequest request) throws NotFoundException{
+        bookListService.deleteBookFromLedingList(id, request.getId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/lend")
+    public ResponseEntity<BookListResponse> lendBook(@PathVariable Long id) throws NotFoundException, BadRequestException{
+        bookListService.lendBooks(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
