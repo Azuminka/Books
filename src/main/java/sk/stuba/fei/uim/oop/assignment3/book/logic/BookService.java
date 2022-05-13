@@ -10,6 +10,7 @@ import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService implements IBookService{
@@ -71,5 +72,27 @@ public class BookService implements IBookService{
         return this.bookRepository.save(bookToFind);
     }
 
+    @Override
+    public Integer getBookAmount(Long id) {
+        Optional<BookEntity> book = this.bookRepository.findById(id);
+        BookEntity newBook= new BookEntity();
+        if (book.isPresent()){
+            newBook= book.get();
+        }
+        return newBook.getAmount();
+    }
+
+    @Override
+    public Integer incrementAmount(Long id, BookEntity book) {
+        Optional<BookEntity> b = this.bookRepository.findById(id);
+        BookEntity oldBook= new BookEntity();
+        if (b.isPresent()){
+            oldBook= b.get();
+        }
+        Integer old= oldBook.getAmount();
+        oldBook.setAmount(old+book.getAmount());
+        this.bookRepository.save(oldBook);
+        return oldBook.getAmount();
+    }
 }
 

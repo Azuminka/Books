@@ -13,4 +13,6 @@ public interface IBookService {
     BookEntity findById(Long id) throws NotFoundException;
     void deleteById(Long id) throws NotFoundException;
     BookEntity updateBook(Long id, BookRequest bookRequest) throws NotFoundException;
+    Integer getBookAmount(Long id);
+    Integer incrementAmount(Long id, BookEntity book);
 }
