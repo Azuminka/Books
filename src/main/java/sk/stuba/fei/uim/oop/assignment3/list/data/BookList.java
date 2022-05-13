@@ -17,5 +17,5 @@ public class BookList {
     private Long id;
     @OneToMany
     private List<BookEntity> lendingList= new ArrayList<>();
-    private boolean lended;
+    private boolean lended=true;
 }
