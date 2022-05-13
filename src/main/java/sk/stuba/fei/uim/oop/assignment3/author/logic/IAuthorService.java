@@ -10,4 +10,6 @@ public interface IAuthorService {
     List<AuthorEntity> getAllAuthors();
     AuthorEntity create(AuthorRequest authorRequest);
     AuthorEntity findById(Long id) throws NotFoundException;
+    void deleteById(Long id) throws NotFoundException;
+    AuthorEntity updateAuthor(Long id, AuthorRequest authorRequest) throws NotFoundException;
 }

@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.assignment3.author.web;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import sk.stuba.fei.uim.oop.assignment3.author.data.AuthorEntity;
 
 import java.util.ArrayList;
@@ -20,4 +21,5 @@ public class AuthorResponse {
         this.books= new ArrayList<>();
         author.getBooks().forEach(book -> this.books.add(book.getId()));
     }
+
 }

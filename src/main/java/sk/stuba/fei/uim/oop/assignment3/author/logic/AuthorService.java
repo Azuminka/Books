@@ -9,6 +9,7 @@ import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorService implements IAuthorService{
@@ -36,4 +37,23 @@ public class AuthorService implements IAuthorService{
         return author;
     }
 
+    @Override
+    public void deleteById(Long id) throws NotFoundException {
+        Optional<AuthorEntity> author= authorRepository.findById(id);
+        if (author.isEmpty()) throw new NotFoundException();
+        this.authorRepository.deleteById(id);
+    }
+
+    @Override
+    public AuthorEntity updateAuthor(Long id, AuthorRequest authorRequest) throws NotFoundException {
+        AuthorEntity authorToFind=this.authorRepository.findAuthorEntityById(id);
+        if (authorToFind==null) throw new NotFoundException();
+        if (authorRequest.getName()!= null){
+            authorToFind.setName(authorRequest.getName());
+        }
+        if (authorRequest.getSurname()!= null){
+            authorToFind.setSurname(authorRequest.getSurname());
+        }
+        return this.authorRepository.save(authorToFind);
+    }
 }
